@@ -57,3 +57,31 @@ int sorted(vector<int> bits){
     cout << flips_needed;
    return flips_needed;
 }
+
+
+/* Another solution */
+
+Vector<int> bit1;
+Vector<int> bit0;
+Int flips_needed;
+
+For(int x=0;x<input_string.size();x++){
+     // get 1s
+     if(input_string[x] == 1){
+      Bit1.push_back(1);
+     }else{
+	// assume 0 … we are using bits
+	bit0.push_back(0);
+    }    
+}
+
+if(Bit1.size() > bit0.size()){
+  //convert zeros to 1’s
+   flips_needed = bit0.size();
+}else if (Bit1.size() < bit0.size()) {
+ // convert 1’s to zeros
+	flips_needed = bit1.size();
+}
+else if (Bit1.size() == bit0.size()) {
+      flips_needed = bit1.size();
+}
