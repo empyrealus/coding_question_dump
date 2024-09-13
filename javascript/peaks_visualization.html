@@ -1,0 +1,62 @@
+<html>
+<style>
+    body {
+    background: #20262E;
+    padding: 20px;
+    font-family: Helvetica;
+  }
+   .normal{background-color:green;height:10px;width:10px;float:left;margin-right:2px;}
+   .peaked{background-color:yellow;height:10px;width:10px;float:left;margin-right:2px;}
+</style>
+<body>
+  <!-- visualization -->
+  <nodes id='node-build'></nodes>
+</body>
+  
+  let n = Number(7),
+  array = [1,1,1,2,1,1,1];
+
+  <script>
+    // Time delays added for visual affect
+    function peak(n=0, array=[]){
+      for(let i=0; i<n;i++){
+        document.getElementById('node-build')
+        .insertAdjacentHTML('beforeEnd', `<child id='node${i}' class='normal'></child>`);
+        }
+       let peaks = [];
+       for(let i=0;i<n;i++){
+           switch(true){
+            case (i==0):{//min-case
+             peaks.push(i);
+            setTimeout(()=>{
+                if(array[i] >= array[i+1]){
+                  document.getElementById(`node${i}`).classList.remove('normal');
+                  document.getElementById(`node${i}`).classList.add('peaked');
+                 }
+                },400);
+            }continue;
+            case (i==(n-1)):{//max-case
+              if(array[i] >= array[i-1]){
+              peaks.push(i);
+              setTimeout(()=>{
+                  document.getElementById(`node${i}`).classList.remove('normal');
+                  document.getElementById(`node${i}`).classList.add('peaked');
+                   },2000);
+                }
+            }continue;
+            default:{//body-case
+               if(array[i] >= array[i-1] && array[i] >= array[i+1]){
+               peaks.push(i);
+               setTimeout(()=>{
+                  document.getElementById(`node${i}`).classList.remove('normal');
+                  document.getElementById(`node${i}`).classList.add('peaked');
+                 },1000);
+                }
+            }continue;
+           }
+       } 
+       return peaks; 
+    }
+    peak(n, array);
+   </script>
+</html>
